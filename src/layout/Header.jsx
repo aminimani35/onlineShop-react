@@ -1,6 +1,7 @@
 import { Grid, makeStyles } from "@material-ui/core";
 import React from "react";
 import { ReactComponent as Logo } from "../assets/svg/slack-new-logo.svg";
+import AuthButton from "../components/AuthButton";
 
 const useStyles = makeStyles({
   Header: {
@@ -22,7 +23,9 @@ const Header = () => {
         <Logo />
       </Grid>
       <Grid lg={6}>drop down</Grid>
-      <Grid lg={3}>register</Grid>
+      <Grid align="left" lg={3}>
+        <AuthButton />
+      </Grid>
     </Grid>
   );
 };
