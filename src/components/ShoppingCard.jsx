@@ -8,9 +8,9 @@ const ShoppingCard = () => {
         style={{
           fontFamily: "shabnamFD",
           width: "1rem",
-          margin: "auto 1.5rem",
+        //   margin: "auto 1.5rem",
         }}
-        color="primary"
+        // color="primary"
         aria-label="add to shopping cart"
       >
         <Badge
