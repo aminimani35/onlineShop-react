@@ -1,3 +1,4 @@
+import Footer from "./layout/Footer";
 import Header from "./layout/Header";
 import RTL from "./theme/RTL";
 function App() {
@@ -5,6 +6,7 @@ function App() {
     <div className="App">
       <RTL>
         <Header />
+        <Footer />
       </RTL>
     </div>
   );
