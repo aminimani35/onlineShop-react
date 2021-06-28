@@ -2,6 +2,7 @@ import { Grid, makeStyles } from "@material-ui/core";
 import React from "react";
 import { ReactComponent as Logo } from "../assets/svg/slack-new-logo.svg";
 import AuthButton from "../components/AuthButton";
+import ShoppingCard from "../components/ShoppingCard";
 
 const useStyles = makeStyles({
   Header: {
@@ -13,6 +14,11 @@ const useStyles = makeStyles({
     display: "flex",
     alignItems: "center",
   },
+  ShoppingCardWrapper: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+  },
 });
 
 const Header = () => {
@@ -23,8 +29,9 @@ const Header = () => {
         <Logo />
       </Grid>
       <Grid lg={6}>drop down</Grid>
-      <Grid align="left" lg={3}>
+      <Grid className={classes.ShoppingCardWrapper} align="left" lg={3}>
         <AuthButton />
+        <ShoppingCard />
       </Grid>
     </Grid>
   );
