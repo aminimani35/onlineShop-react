@@ -1,10 +1,10 @@
-import "./App.css";
+import Header from "./layout/Header";
 import RTL from "./theme/RTL";
 function App() {
   return (
     <div className="App">
       <RTL>
-        <h2>Online shop</h2>
+        <Header />
       </RTL>
     </div>
   );
