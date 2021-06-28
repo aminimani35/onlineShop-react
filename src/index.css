@@ -3,3 +3,7 @@ body {
   padding: 0 !important;
   font-family: "shabnamFD" !important;
 }
+
+span.MuiBadge-badge {
+  font-family: "shabnamFD" !important;
+}
