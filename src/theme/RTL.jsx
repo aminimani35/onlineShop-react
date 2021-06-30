@@ -17,6 +17,9 @@ export const theme = createMuiTheme({
     primary: {
       main: "#ef233c",
     },
+    secondary: {
+      main: "#fff",
+    },
   },
   typography: {
     fontFamily: "Shabnam",
