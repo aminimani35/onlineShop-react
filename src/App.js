@@ -1,3 +1,4 @@
+import Container from "./layout/Container";
 import Footer from "./layout/Footer";
 import Header from "./layout/Header";
 import RTL from "./theme/RTL";
@@ -6,6 +7,7 @@ function App() {
     <div className="App">
       <RTL>
         <Header />
+        <Container />
         <Footer />
       </RTL>
     </div>
