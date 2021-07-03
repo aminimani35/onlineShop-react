@@ -1,50 +1,77 @@
-import React from "react";
-import Carousel from "react-multi-carousel";
+import { makeStyles } from "@material-ui/core";
+import { useEffect, useState } from "react";
 import "react-multi-carousel/lib/styles.css";
-const RelatedProducts = () => {
-  const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 5,
+import Slider from "react-slick";
+import { getLimitedProducts } from "../Services/ProductApi";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import ProductCard from "./ProductCard";
+
+const useStyles = makeStyles({
+  Card: {
+    padding: "1rem !important",
+    boxShadow: "none",
+    margin: ".5rem .3rem",
+    border: "none",
+    cursor: "pointer",
+    "&:hover": {
+      // border: ".5px solid #333",
+      transition: ".2s ease-in",
+      transform: "translateY(-3px)",
     },
-    desktop: {
-      breakpoint: { max: 3000, min: 1024 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-    },
+  },
+  Wrapper: {
+    backgroundColor: "#fff",
+    borderRadius: ".5rem",
+    padding: "2rem",
+    width: "100%",
+  },
+  TitleWrapper: {
+    padding: " 0 0.6rem 0.6rem 0.6rem",
+    marginRight: ".5rem",
+  },
+  AddToCardBtn: {
+    backgroundColor: "#F13D53",
+    color: "#fff",
+    textAlign: "left",
+  },
+  PriceWrapper: {
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    margin: ".3rem auto",
+  },
+});
+
+const RelatedProducts = ({ category }) => {
+  const [products, setProducts] = useState([]);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    arrows: true,
+    draggable: true,
+    focusOnSelect: true,
   };
+  const classes = useStyles();
+  useEffect(() => {
+    getLimitedProducts(8).then((resp) => setProducts(resp));
+  }, []);
+
   return (
-    <Carousel
-      swipeable={false}
-      draggable={false}
-      showDots={true}
-      responsive={responsive}
-      ssr={true} // means to render carousel on server-side.
-      infinite={true}
-      //   autoPlay={this.props.deviceType !== "mobile" ? true : false}
-      autoPlaySpeed={1000}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={500}
-      containerClass="carousel-container"
-      removeArrowOnDeviceType={["tablet", "mobile"]}
-      //   deviceType={this.props.deviceType}
-      dotListClass="custom-dot-list-style"
-      itemClass="carousel-item-padding-40-px"
-    >
-      <div>Item 1</div>
-      <div>Item 2</div>
-      <div>Item 3</div>
-      <div>Item 4</div>
-    </Carousel>
+    <div className={classes.Wrapper}>
+      <div className={classes.TitleWrapper}>
+        <h2>محصولات مرتبط</h2>
+      </div>
+      <Slider {...settings}>
+        {/* {products && */}
+        {products.map((product) => (
+          <ProductCard product={product} classes={classes} />
+        ))}
+      </Slider>
+    </div>
   );
 };
 
