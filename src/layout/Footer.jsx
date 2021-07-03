@@ -26,20 +26,23 @@ const useStyles = makeStyles({
   FooterWave: {
     zIndex: "-1",
   },
+  FooterColumns: {
+    padding: ".5rem",
+  },
 });
 const Footer = () => {
   const classes = useStyles();
   return (
     <footer className={classes.FooterWrapper}>
       <Grid container>
-        <Grid item lg={3} className={classes.MapContainer}>
+        <Grid item lg={3} className={classes.FooterColumns}>
           <About />
         </Grid>
-        <Grid item lg={3} className={classes.MapContainer}>
+        <Grid item lg={3} className={classes.FooterColumns}>
           <QuickAccessNav />
         </Grid>
 
-        <Grid item lg={3} className={classes.MapContainer}>
+        <Grid item lg={3} className={classes.FooterColumns}>
           <Map />
         </Grid>
       </Grid>

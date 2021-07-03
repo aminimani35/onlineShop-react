@@ -22,7 +22,7 @@ export const theme = createMuiTheme({
     },
   },
   typography: {
-    fontFamily: "Shabnam",
+    fontFamily: "ShabnamFD",
   },
   tableCell: {
     fontFamily: "ShabnamFD",
