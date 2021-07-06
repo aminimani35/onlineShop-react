@@ -5,6 +5,7 @@ import {
   makeStyles,
   InputAdornment,
   Typography,
+  Button,
 } from "@material-ui/core";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 const useStyles = makeStyles({
@@ -27,6 +28,21 @@ const useStyles = makeStyles({
     backgroundColor: "#e5e5e5",
     padding: ".5rem",
     borderRadius: ".6rem",
+  },
+  Button: {
+    width: "100%",
+    marginTop: "1rem",
+    border: "none !important",
+    outline: "none",
+    backgroundColor: "#F13D53",
+    padding: ".5rem",
+    borderRadius: ".6rem",
+    color: "#fff",
+    "&:hover": {
+      backgroundColor: "#fff",
+      color: "#F13D53",
+      border: "1px solid #F13D53",
+    },
   },
 });
 
@@ -75,6 +91,9 @@ const Form = () => {
               disableUnderline: true,
             }}
           />
+          <Button className={classes.Button} variant="contained">
+            ثبت درخواست
+          </Button>
         </form>
       </Paper>
     </Grid>
