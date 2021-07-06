@@ -4,6 +4,7 @@ import {
   TextField,
   makeStyles,
   InputAdornment,
+  Typography,
 } from "@material-ui/core";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 const useStyles = makeStyles({
@@ -22,6 +23,7 @@ const useStyles = makeStyles({
     width: "100%",
     marginTop: "1rem",
     border: "none !important",
+    outline: "none",
     backgroundColor: "#e5e5e5",
     padding: ".5rem",
     borderRadius: ".6rem",
@@ -33,8 +35,12 @@ const Form = () => {
   return (
     <Grid item className={classes.FormWrapper}>
       <Paper className={classes.Form}>
+        <Typography variant="h4" component="h4">
+          ارتباط با ما
+        </Typography>
         <form>
           <TextField
+            disableUnderline={true}
             className={classes.TextField}
             placeholder="نام و نام خانوادگی"
             InputProps={{
@@ -43,6 +49,7 @@ const Form = () => {
                   <PermIdentityIcon style={{ color: "red" }} />
                 </InputAdornment>
               ),
+              disableUnderline: true,
             }}
           />
           <TextField
@@ -55,6 +62,7 @@ const Form = () => {
                   <PermIdentityIcon style={{ color: "red" }} />
                 </InputAdornment>
               ),
+              disableUnderline: true,
             }}
           />
           <TextField
@@ -63,6 +71,9 @@ const Form = () => {
             rows={4}
             placeholder="متن پیام"
             type="email"
+            InputProps={{
+              disableUnderline: true,
+            }}
           />
         </form>
       </Paper>
