@@ -1,7 +1,7 @@
 import { Divider } from "@material-ui/core";
 import React from "react";
 import RelatedProducts from "../components/RelatedProducts";
-
+import ContactForm from "../components/ContactForm";
 const SingleProduct = () => {
   return (
     <>
@@ -11,7 +11,7 @@ const SingleProduct = () => {
       <Divider />
       <RelatedProducts />
       <Divider />
-      <h2>Form</h2>
+      <ContactForm />
     </>
   );
 };
