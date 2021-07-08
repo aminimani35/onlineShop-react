@@ -1,6 +1,5 @@
 import { makeStyles } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import "react-multi-carousel/lib/styles.css";
 import Slider from "react-slick";
 import { getLimitedProducts } from "../Services/ProductApi";
 import "slick-carousel/slick/slick.css";
