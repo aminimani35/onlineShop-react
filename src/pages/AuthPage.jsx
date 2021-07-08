@@ -1,11 +1,11 @@
-import { Paper, TextFields } from "@material-ui/core";
+import { Paper, TextField } from "@material-ui/core";
 import React from "react";
 
 const AuthPage = () => {
   return (
     <>
       <Paper>
-        <TextFields
+        <TextField
           placeholder="نام کاربری"
           InputProps={{ disableUnderline: true }}
         />
