@@ -24,6 +24,9 @@ export const theme = createMuiTheme({
   typography: {
     fontFamily: "ShabnamFD",
   },
+  textfield: {
+    backgroundColor: "#E5E5E5",
+  },
   tableCell: {
     fontFamily: "ShabnamFD",
   },

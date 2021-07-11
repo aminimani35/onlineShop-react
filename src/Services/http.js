@@ -1,7 +1,7 @@
 import Axios from "axios";
 
 const base_url = "https://fakestoreapi.com";
-
+export const cancelOperation = Axios.CancelToken.source();
 export const http = {
   get: async (url) =>
     await Axios.get(`${base_url}/${url}`)
@@ -12,9 +12,7 @@ export const http = {
   post: async (params) =>
     await Axios.post(`${base_url}`, params)
       .then((resp) => resp)
-      .catch(
-        console.log((err) => {
-          throw err;
-        })
-      ),
+      .catch((err) => {
+        throw err;
+      }),
 };

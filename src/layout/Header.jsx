@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from "../assets/svg/slack-new-logo.svg";
 import AuthButton from "../components/AuthButton";
 import ShoppingCard from "../components/ShoppingCard";
 import SearchIcon from "@material-ui/icons/Search";
-
+import { useHistory } from "react-router";
 const useStyles = makeStyles({
   Header: {
     backgroundColor: "#fff",
@@ -30,12 +30,18 @@ const useStyles = makeStyles({
 
 const Header = () => {
   const classes = useStyles();
+  const history = useHistory();
   return (
     <Grid className={classes.Header} container>
-      <Grid lg={3}>
-        <Logo />
+      <Grid item lg={3}>
+        <Logo
+          onClick={() => {
+            history.push("/");
+            console.log("push");
+          }}
+        />
       </Grid>
-      <Grid lg={6}>
+      <Grid item lg={6}>
         <TextField
           placeholder="دنبال چی میگردی ؟"
           className={classes.Searchbar}
@@ -49,7 +55,7 @@ const Header = () => {
           }}
         />
       </Grid>
-      <Grid className={classes.ShoppingCardWrapper} align="left" lg={3}>
+      <Grid item className={classes.ShoppingCardWrapper} align="left" lg={3}>
         <AuthButton />
         <ShoppingCard />
       </Grid>
