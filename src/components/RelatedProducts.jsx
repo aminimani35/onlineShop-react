@@ -1,12 +1,11 @@
 import { makeStyles } from "@material-ui/core";
 import { useEffect, useState } from "react";
-import "react-multi-carousel/lib/styles.css";
 import Slider from "react-slick";
 import { getLimitedProducts } from "../Services/ProductApi";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "./ProductCard";
-
+import { cancelOperation } from "../Services/http";
 const useStyles = makeStyles({
   Card: {
     padding: "1rem !important",
@@ -58,6 +57,7 @@ const RelatedProducts = ({ category }) => {
   const classes = useStyles();
   useEffect(() => {
     getLimitedProducts(8).then((resp) => setProducts(resp));
+    return () => cancelOperation.cancel();
   }, []);
 
   return (
@@ -67,8 +67,8 @@ const RelatedProducts = ({ category }) => {
       </div>
       <Slider {...settings}>
         {/* {products && */}
-        {products.map((product) => (
-          <ProductCard product={product} classes={classes} />
+        {products.map((product, index) => (
+          <ProductCard key={index} product={product} classes={classes} />
         ))}
       </Slider>
     </div>

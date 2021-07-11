@@ -8,3 +8,8 @@ body {
 span.MuiBadge-badge {
   font-family: "shabnamFD" !important;
 }
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
