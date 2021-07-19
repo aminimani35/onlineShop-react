@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Paper,
   TextField,
@@ -13,6 +13,9 @@ import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import PersonOutlineIcon from "@material-ui/icons/PersonOutline";
 import { Link } from "react-router-dom";
+import { fetchToken, fetchUser } from "../Services/http.js";
+import { useAuthDispatch } from "../context/AuthContext.jsx";
+import { actionTypes } from "../context/reducer.js";
 
 const useStyles = makeStyles({
   Paper: {
@@ -56,14 +59,43 @@ const useStyles = makeStyles({
     "&:link": {},
   },
 });
+
 const AuthPage = () => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [token, setToken] = useState(null);
   const classes = useStyles();
   const [show, setShow] = useState(false);
 
+  const dispatch = useAuthDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
+    fetchToken.login(userName, password).then((resp) => {
+      if (resp?.data) setToken(resp.data.data);
+    });
   };
 
+  useEffect(() => {
+    if (token) {
+      fetchUser(token).then((resp) => {
+        if (resp.data.success) {
+          localStorage.setItem("token", token);
+          dispatch({
+            type: actionTypes.LOGIN_SUCCESS,
+            payload: {
+              user: resp.data,
+              token: token,
+            },
+          });
+        }
+      });
+    }
+  }, [token, dispatch]);
+
+  useEffect(() => {
+    if (localStorage.getItem("token")) setToken(localStorage.getItem("token"));
+  }, []);
   return (
     <>
       <Paper className={classes.Paper}>
@@ -80,6 +112,8 @@ const AuthPage = () => {
                   </InputAdornment>
                 ),
               }}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
             />
             <TextField
               className={classes.Textfield}
@@ -92,16 +126,21 @@ const AuthPage = () => {
                     position="start"
                     onClick={() => setShow(!show)}
                   >
-                    {show ? <Visibility /> : <VisibilityOff />}
+                    {!show ? <Visibility /> : <VisibilityOff />}
                   </InputAdornment>
                 ),
               }}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
-            <Button className={classes.LoginBtn}>ورود</Button>
+            <Button onClick={submitHandler} className={classes.LoginBtn}>
+              ورود
+            </Button>
             <Divider className={classes.Hr} />
             <Typography className={classes.Hr} variant="body1">
               <Link to="/"> مشکلی در فرایند ورود دارید؟</Link>
             </Typography>
+            <h2>{localStorage.getItem("token")}</h2>
           </form>
         </Card>
       </Paper>

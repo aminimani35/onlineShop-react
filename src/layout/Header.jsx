@@ -5,6 +5,7 @@ import AuthButton from "../components/AuthButton";
 import ShoppingCard from "../components/ShoppingCard";
 import SearchIcon from "@material-ui/icons/Search";
 import { useHistory } from "react-router";
+import Profile from "../components/Profile";
 const useStyles = makeStyles({
   Header: {
     backgroundColor: "#fff",
@@ -56,7 +57,7 @@ const Header = () => {
         />
       </Grid>
       <Grid item className={classes.ShoppingCardWrapper} align="left" lg={3}>
-        <AuthButton />
+        {localStorage.getItem("token") ? <Profile /> : <AuthButton />}
         <ShoppingCard />
       </Grid>
     </Grid>
